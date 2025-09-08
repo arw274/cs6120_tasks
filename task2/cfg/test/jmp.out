@@ -1,0 +1,4 @@
+Block 0: [{'dest': 'a', 'op': 'const', 'type': 'int', 'value': 0}, {'labels': ['end'], 'op': 'jmp'}]
+Block 1: [{'dest': 'b', 'op': 'const', 'type': 'int', 'value': 0}]
+Block 2: [{'label': 'end'}, {'op': 'ret'}]
+{'main': {0: [2], 1: [2], 2: []}}

@@ -1,0 +1,13 @@
+# 0 -> {1}, 1 -> {3, 4}, 2 -> {3}, 3 -> {1}, 4 -> {}
+@main (input: int) {
+    one: int = const 1;
+    cond0: bool = ge input one;
+.loop:
+    br cond0 .ge .zero;
+    b: int = const one;
+.ge:
+    input: int = sub input one;
+    jmp .loop;
+.zero:
+    ret;
+}

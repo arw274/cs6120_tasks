@@ -1,0 +1,1 @@
+{'pow': {'mod', 'pow'}, 'mod': set(), 'LEFTSHIFT': {'pow'}, 'RIGHTSHIFT': {'pow'}, 'main': {'RIGHTSHIFT', 'LEFTSHIFT'}}

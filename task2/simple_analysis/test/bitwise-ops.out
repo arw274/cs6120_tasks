@@ -1,0 +1,1 @@
+{'mod2': set(), 'loop_subroutine': {'mod2'}, 'OR': {'loop_subroutine'}, 'AND': {'loop_subroutine'}, 'XOR': {'AND', 'OR'}, 'main': {'AND', 'XOR', 'OR'}}
