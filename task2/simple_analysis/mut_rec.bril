@@ -1,0 +1,23 @@
+# Mutually recursive functions, to test call graph generation
+# ARGS: 3
+@main(n: int) {
+    call @f1 n;
+}
+
+@f1(n: int) {
+    zero: int = const 0;
+    cond: bool = le n zero;
+    print cond;
+    br cond .true .false;
+.false:
+    call @f2 n;
+    jmp .true;
+.true:
+    print n;
+}
+
+@f2(n: int) {
+    one: int = const 1;
+    n: int = sub n one;
+    call @f1 n;
+}

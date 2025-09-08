@@ -1,0 +1,128 @@
+{
+  "functions": [
+    {
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "instrs": [
+        {
+          "args": [
+            "n"
+          ],
+          "funcs": [
+            "f1"
+          ],
+          "op": "call"
+        }
+      ],
+      "name": "main"
+    },
+    {
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "instrs": [
+        {
+          "dest": "zero",
+          "op": "const",
+          "type": "int",
+          "value": 0
+        },
+        {
+          "args": [
+            "n",
+            "zero"
+          ],
+          "dest": "cond",
+          "op": "le",
+          "type": "bool"
+        },
+        {
+          "args": [
+            "cond"
+          ],
+          "op": "print"
+        },
+        {
+          "args": [
+            "cond"
+          ],
+          "labels": [
+            "true",
+            "false"
+          ],
+          "op": "br"
+        },
+        {
+          "label": "false"
+        },
+        {
+          "args": [
+            "n"
+          ],
+          "funcs": [
+            "f2"
+          ],
+          "op": "call"
+        },
+        {
+          "labels": [
+            "true"
+          ],
+          "op": "jmp"
+        },
+        {
+          "label": "true"
+        },
+        {
+          "args": [
+            "n"
+          ],
+          "op": "print"
+        }
+      ],
+      "name": "f1"
+    },
+    {
+      "args": [
+        {
+          "name": "n",
+          "type": "int"
+        }
+      ],
+      "instrs": [
+        {
+          "dest": "one",
+          "op": "const",
+          "type": "int",
+          "value": 1
+        },
+        {
+          "args": [
+            "n",
+            "one"
+          ],
+          "dest": "n",
+          "op": "sub",
+          "type": "int"
+        },
+        {
+          "args": [
+            "n"
+          ],
+          "funcs": [
+            "f1"
+          ],
+          "op": "call"
+        }
+      ],
+      "name": "f2"
+    }
+  ]
+}
