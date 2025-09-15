@@ -1,7 +1,7 @@
 import sys
 import json
 
-def basic_blocks(instrs):
+def basic_blocks(instrs, quiet=False):
     blocks = [[]]
     labels = {}
     for inst in instrs:
@@ -12,12 +12,12 @@ def basic_blocks(instrs):
             blocks.append([])
     for i, b in enumerate(blocks): 
         if len(b) == 0:
-            print("Warning: empty block detected")
+            if not quiet: print("Warning: empty block detected")
         elif "label" in b[0]:
-            print("Block {}: {}".format(i, b))
+            if not quiet: print("Block {}: {}".format(i, b))
             labels[b[0]["label"]] = i
         else:
-            print("Block {}: {}".format(i, b))
+            if not quiet: print("Block {}: {}".format(i, b))
     return [b for b in blocks if len(b) > 0], labels
 
 def cfg(blocks, labels):

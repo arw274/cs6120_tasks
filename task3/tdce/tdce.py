@@ -28,19 +28,20 @@ def iterate(func):
             break
 
 def locally_killed_instrs(func):
-    """Remove instructions that are overwritten before they are used within the same block."""
+    """Remove instructions that are reassigned before they are used within the same block."""
     blocks, _ = basic_blocks(func["instrs"], quiet=True)
     for block in blocks:
-        used = {}
+        assigned = {}
         for instr in reversed(block):
             if "args" in instr and instr["args"]:
                 for arg in instr["args"]:
-                    used[arg] = True
-            if "dest" in instr and instr["dest"] in used:
-                if used[instr["dest"]] == False:
+                    assigned[arg] = False
+            if "dest" in instr:
+                if instr["dest"] in assigned and assigned[instr["dest"]]:
                     block.remove(instr)
                 else:
-                    used[instr["dest"]] = False
+                    assigned[instr["dest"]] = True
+            
     func["instrs"] = [instr for block in blocks for instr in block]
     
 def dce(full_bril):
