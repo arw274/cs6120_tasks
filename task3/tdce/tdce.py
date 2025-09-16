@@ -36,7 +36,7 @@ def locally_killed_instrs(func):
             if "args" in instr and instr["args"]:
                 for arg in instr["args"]:
                     assigned[arg] = False
-            if "dest" in instr:
+            elif "dest" in instr:
                 if instr["dest"] in assigned and assigned[instr["dest"]]:
                     block.remove(instr)
                 else:
