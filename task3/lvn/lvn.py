@@ -1,13 +1,14 @@
 import sys, os
 import json
+import argparse
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 from task2.cfg.cfg import basic_blocks
 
 NO_VALUE_OPS = ("jmp", "nop")
+COMMUTATIVE_OPS = ("add", "mul", "eq", "and", "or")
 
-
-def lvn_block(block):
+def lvn_block(block, semantics = True):
     emitted_instrs = []
     values = []
     new_names = []
@@ -40,13 +41,25 @@ def lvn_block(block):
             if inst["op"] == "const":
                 value = {"op": inst["op"], "type": inst["type"], "value": inst["value"]}
             else:
+                arg_nums = [map_from_orig_names[a] for a in inst["args"]]
+                if semantics and inst["op"] in COMMUTATIVE_OPS:
+                    arg_nums = sorted(arg_nums)
                 value = {"op": inst["op"],
                          "type": inst["type"],
-                         "args": [map_from_orig_names[a] for a in inst["args"]]}
+                         "args": arg_nums}
+            # whether this is an extraneous id we should bypass
+            # DO NOT BYPASS IDS OF LITERALS; we may lose copies since we don't rename literals
+            # (deleting ids of literals broke core/euclid)
+            remap_id = (semantics 
+                        and inst["op"] == "id" 
+                        and values[map_from_orig_names[inst["args"][0]]]["op"] != "_literal")
             # check to see if value already computed, if so:
-            if inst["op"] != "call" and value in values:
+            if inst["op"] != "call" and (remap_id or value in values):
                 # update table and emit id (will be dead code unless used in future block)
-                map_from_orig_names[inst["dest"]] = values.index(value)
+                if remap_id:
+                    map_from_orig_names[inst["dest"]] = map_from_orig_names[inst["args"][0]]
+                else:
+                    map_from_orig_names[inst["dest"]] = values.index(value)
                 
                 definitions_left[inst["dest"]] -= 1
                 suffix = ""
@@ -90,16 +103,19 @@ def lvn_block(block):
             emitted_instrs.append(new_inst)
     return emitted_instrs
 
-def lvn(full_bril):
+def lvn(full_bril, semantics=True):
     for f in full_bril["functions"]:
         blocks, _ = basic_blocks(f["instrs"], quiet=True)
         new_instrs = []
         for b in blocks:
-            new_instrs.extend(lvn_block(b))
+            new_instrs.extend(lvn_block(b, semantics))
         f["instrs"] = new_instrs
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--no_semantics", action="store_true")
+    args = parser.parse_args()
     full_bril = json.load(sys.stdin)
-    lvn(full_bril)
+    lvn(full_bril, not args.no_semantics)
     print(json.dumps(full_bril, indent=2))
 

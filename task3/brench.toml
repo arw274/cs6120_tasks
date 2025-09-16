@@ -14,10 +14,11 @@ pipeline = [
     "brili -p {args}",
 ]
 
-[runs.lvn]
+[runs.full_ns]
 pipeline = [
     "bril2json",
-    "python3 lvn/lvn.py",
+    "python3 lvn/lvn.py --no_semantics",
+    "python3 tdce/tdce.py",
     "brili -p {args}",
 ]
 
