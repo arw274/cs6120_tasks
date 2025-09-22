@@ -27,7 +27,7 @@ def reaching_defs(func):
 
     initial = []
     state = worklist(blocks, graph, transfer, meet, initial)
-    return state
+    return state[0]
 
 if __name__ == "__main__":
     full_bril = json.load(sys.stdin)

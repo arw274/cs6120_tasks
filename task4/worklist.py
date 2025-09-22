@@ -32,4 +32,4 @@ def worklist(blocks, cfg, transfer, meet, initial) -> dict:
             out_state[b_idx] = new_state
             for s in cfg[b_idx]:
                 worklist.append(s)
-    return in_state
+    return in_state, out_state
