@@ -35,8 +35,13 @@ if __name__ == "__main__":
         print("Function:", func["name"])
         print()
         state = reaching_defs(func)
+        blocks, labels = basic_blocks(func["instrs"], quiet=True)
+        block_names = []
+        for i in range(len(blocks)):
+            block_names.append(blocks[i][0]["label"] if "label" in blocks[i][0] else str(i))
         for b, s in state.items():
-            print("Block", b, "reaching definitions:")
+            print("Block", block_names[b], "reaching definitions:")
             for instr, idx in s:
-                print("  From block", idx, ": instr", instr)
+                print("  From block", block_names[idx],
+                      ": var", blocks[idx][instr]["dest"], "instr", instr)
         print()
