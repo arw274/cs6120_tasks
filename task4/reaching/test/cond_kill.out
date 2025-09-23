@@ -1,0 +1,17 @@
+Function: main
+
+Block 0: [{'dest': 'one', 'op': 'const', 'type': 'int', 'value': 1}, {'args': ['input', 'one'], 'dest': 'cond0', 'op': 'ge', 'type': 'bool'}, {'args': ['cond0'], 'labels': ['ge', 'zero'], 'op': 'br'}]
+Block 1: [{'args': ['one'], 'dest': 'input', 'op': 'const', 'type': 'int'}]
+Block 2: [{'label': 'ge'}, {'args': ['input', 'one'], 'dest': 'input', 'op': 'sub', 'type': 'int'}]
+Block 3: [{'label': 'zero'}, {'op': 'ret'}]
+Block 0 reaching definitions:
+Block 1 reaching definitions:
+Block ge reaching definitions:
+  From block 0 : var cond0 instr 1
+  From block 1 : var input instr 0
+  From block 0 : var one instr 0
+Block zero reaching definitions:
+  From block 0 : var cond0 instr 1
+  From block ge : var input instr 1
+  From block 0 : var one instr 0
+

@@ -1,0 +1,11 @@
+Function: main
+
+Block 0: [{'dest': 'a', 'op': 'const', 'type': 'int', 'value': 0}, {'labels': ['end'], 'op': 'jmp'}]
+Block 1: [{'dest': 'a', 'op': 'const', 'type': 'int', 'value': 1}]
+Block 2: [{'label': 'end'}, {'op': 'ret'}]
+Block 0 reaching definitions:
+Block 1 reaching definitions:
+Block end reaching definitions:
+  From block 1 : var a instr 0
+  From block 0 : var a instr 0
+

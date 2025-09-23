@@ -1,8 +1,8 @@
-from worklist import worklist
 import os, sys, json
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 from task2.cfg.cfg import basic_blocks, cfg
+from task4.worklist import worklist
 
 # Perform reaching definitions analysis on the given function.
 def reaching_defs(func):

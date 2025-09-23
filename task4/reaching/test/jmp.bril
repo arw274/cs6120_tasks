@@ -1,0 +1,13 @@
+# Block 0 reaching definitions:
+# Block 1 reaching definitions:
+# Block 2 reaching definitions: 
+#   From block 0 : var a instr 0
+#   From block 1 : var a instr 0
+
+@main {
+    a: int = const 0;
+    jmp .end;
+    a: int = const 1;
+.end:
+    ret;
+}

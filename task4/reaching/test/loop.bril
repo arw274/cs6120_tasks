@@ -1,0 +1,30 @@
+# Block 0 reaching definitions:
+# Block 1 (loop) reaching definitions:
+#   From block 0 : var one instr 0
+#   From block 3 : var input instr 1
+#   From block 2 : var b instr 0
+#   From block 1 : var cond0 instr 1
+# Block 2 reaching definitions: 
+# Block 3 (ge) reaching definitions: 
+#   From block 0 : var one instr 0
+#   From block 1 : var cond0 instr 1
+#   From block 2 : var b instr 0
+#   From block 3 : var input instr 1
+# Block 4 (zero) reaching definitions: 
+#   From block 0 : var one instr 0
+#   From block 1 : var cond0 instr 1
+#   From block 2 : var b instr 0
+#   From block 3 : var input instr 1
+
+@main (input: int) {
+    one: int = const 1;
+.loop:
+    cond0: bool = ge input one;
+    br cond0 .ge .zero;
+    b: int = const one;
+.ge:
+    input: int = sub input one;
+    jmp .loop;
+.zero:
+    ret;
+}

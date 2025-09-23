@@ -1,0 +1,23 @@
+Function: main
+
+Block 0: [{'dest': 'one', 'op': 'const', 'type': 'int', 'value': 1}]
+Block 1: [{'label': 'loop'}, {'args': ['input', 'one'], 'dest': 'cond0', 'op': 'ge', 'type': 'bool'}, {'args': ['cond0'], 'labels': ['ge', 'zero'], 'op': 'br'}]
+Block 2: [{'args': ['one'], 'dest': 'input', 'op': 'const', 'type': 'int'}]
+Block 3: [{'label': 'ge'}, {'args': ['input', 'one'], 'dest': 'input', 'op': 'sub', 'type': 'int'}, {'labels': ['loop'], 'op': 'jmp'}]
+Block 4: [{'label': 'zero'}, {'op': 'ret'}]
+Block 0 reaching definitions:
+Block loop reaching definitions:
+  From block loop : var cond0 instr 1
+  From block ge : var input instr 1
+  From block 0 : var one instr 0
+Block 2 reaching definitions:
+Block ge reaching definitions:
+  From block 2 : var input instr 0
+  From block loop : var cond0 instr 1
+  From block ge : var input instr 1
+  From block 0 : var one instr 0
+Block zero reaching definitions:
+  From block loop : var cond0 instr 1
+  From block ge : var input instr 1
+  From block 0 : var one instr 0
+
