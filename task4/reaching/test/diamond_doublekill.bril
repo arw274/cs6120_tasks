@@ -19,7 +19,7 @@
     jmp .end;
 .zero:
     b: int = const input;
-    jmp. end;
+    jmp .end;
 .end:
     ret;
 }
