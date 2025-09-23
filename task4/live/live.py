@@ -1,14 +1,13 @@
-from worklist import worklist, flip_cfg
 import os, sys, json
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../'))
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 from task2.cfg.cfg import basic_blocks, cfg
+from task4.worklist import worklist, flip_cfg
 
 # Perform reaching definitions analysis on the given function.
 def live_vars(func):
     blocks, labels = basic_blocks(func["instrs"], quiet=True)
     graph = cfg(blocks, labels)
-    print(graph)
     graph = flip_cfg(graph) # live vars should be done backwards
 
     def transfer(b_idx, state):
