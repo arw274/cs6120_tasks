@@ -44,5 +44,5 @@ if __name__ == "__main__":
             block_names.append(blocks[i][0]["label"] if "label" in blocks[i][0] else str(i))
         for b, s in state.items():
             print("Block", block_names[b], "live variables at input:")
-            print(s)
+            print(sorted(list(s)))
         print()

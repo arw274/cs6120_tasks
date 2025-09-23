@@ -1,0 +1,13 @@
+@main (input: int) {
+    b: int = const one;
+    cond0: bool = ge input b;
+    br cond0 .ge .zero;
+.ge:
+    b: int = sub input one;
+    jmp .end;
+.zero:
+    b: int = const input;
+    jmp .end;
+.end:
+    ret;
+}

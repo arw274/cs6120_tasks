@@ -1,0 +1,9 @@
+Function: main
+
+Block 0 live variables at input:
+['n']
+Block iterate live variables at input:
+['f_n', 'f_n1', 'n', 'one', 'zero']
+Block end live variables at input:
+['f_n']
+

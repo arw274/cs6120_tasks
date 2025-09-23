@@ -1,0 +1,11 @@
+Function: main
+
+Block 0 live variables at input:
+['input', 'one']
+Block ge live variables at input:
+['input', 'one']
+Block zero live variables at input:
+['input']
+Block end live variables at input:
+[]
+

@@ -1,0 +1,18 @@
+# ARGS: 10
+@main(n: int) {
+    zero: int = const 0;
+    one: int = const 1;
+    f_n1: int = const 1;
+    f_n: int = const 0;
+    cond: bool = le n zero;
+    br cond .end .iterate;
+.iterate:
+    new_f_n: int = add f_n f_n1;
+    f_n1: int = id f_n;
+    f_n: int = id new_f_n;
+    n: int = sub n one;
+    cond: bool = le n zero;
+    br cond .end .iterate;
+.end:
+    print f_n;
+}

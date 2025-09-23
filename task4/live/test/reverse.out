@@ -1,0 +1,15 @@
+Function: main
+
+Block 0 live variables at input:
+['input']
+Block for.cond.3 live variables at input:
+['n', 'notdone', 'result', 'v0', 'v1']
+Block for.body.3 live variables at input:
+['n', 'notdone', 'result', 'v0', 'v1']
+Block if.body live variables at input:
+['n', 'result', 'v0', 'v1']
+Block for.incre live variables at input:
+['n', 'notdone', 'result', 'v0', 'v1']
+Block for.end.3 live variables at input:
+['result']
+

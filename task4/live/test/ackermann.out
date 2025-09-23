@@ -1,0 +1,18 @@
+Function: ack
+
+Block 0 live variables at input:
+['m', 'n']
+Block m_zero live variables at input:
+['n', 'one']
+Block m_nonzero live variables at input:
+['m', 'n', 'one', 'zero']
+Block n_zero live variables at input:
+['m', 'one']
+Block n_nonzero live variables at input:
+['m', 'n', 'one']
+
+Function: main
+
+Block 0 live variables at input:
+['m', 'n']
+
