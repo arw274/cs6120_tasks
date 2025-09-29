@@ -1,0 +1,476 @@
+../../bril/benchmarks/core/ackermann.bril
+Function: ack
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/armstrong.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: getDigits
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: power
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/bbs.bril
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: lsb
+ Doms valid: True
+ Tree valid: True
+Function: square
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/binary-fmt.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: printBinary
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/binpow.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: is_even
+ Doms valid: True
+ Tree valid: True
+Function: bin_pow
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/bitshift.bril
+Function: pow
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: LEFTSHIFT
+ Doms valid: True
+ Tree valid: True
+Function: RIGHTSHIFT
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/bitwise-ops.bril
+Function: mod2
+ Doms valid: True
+ Tree valid: True
+Function: loop_subroutine
+ Doms valid: True
+ Tree valid: True
+Function: OR
+ Doms valid: True
+ Tree valid: True
+Function: AND
+ Doms valid: True
+ Tree valid: True
+Function: XOR
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/catalan.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: catalan
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/check-primes.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: checkPrime
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/collatz.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/combination.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: combo
+ Doms valid: True
+ Tree valid: True
+Function: factorial
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/delannoy.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: count_path
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/digital-root.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: is_single_digit
+ Doms valid: True
+ Tree valid: True
+Function: peel_last_digit
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/euclid.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: gcd
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/fact.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: fact
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/factors.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/fib_iter.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/fib_recursive.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: fib
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/fitsinside.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: fitsInside
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/fizz-buzz.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/gcd.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/gebmm.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mat_bitsel
+ Doms valid: True
+ Tree valid: True
+Function: mat_packed_index
+ Doms valid: True
+ Tree valid: True
+Function: pow2
+ Doms valid: True
+ Tree valid: True
+Function: bitsel
+ Doms valid: True
+ Tree valid: True
+Function: abs
+ Doms valid: True
+ Tree valid: True
+Function: is_even
+ Doms valid: True
+ Tree valid: True
+Function: is_odd
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/geometric-sum.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/hamming.bril
+Function: lsb
+ Doms valid: True
+ Tree valid: True
+Function: hamm_lsb
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/hanoi.bril
+Function: hanoi
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/is-decreasing.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: is_decreasing
+ Doms valid: True
+ Tree valid: True
+Function: last_digit
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/karatsuba.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: karatsuba
+ Doms valid: True
+ Tree valid: True
+Function: num_digits
+ Doms valid: True
+ Tree valid: True
+Function: max
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: pow
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/lcm.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: getMod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/loopfact.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/mccarthy91.bril
+Function: mccarthy91
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/mod_inv.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/mod_pow.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod_pow
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/montgomery.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/orders.bril
+Function: abs
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: gcd
+ Doms valid: True
+ Tree valid: True
+Function: lcm
+ Doms valid: True
+ Tree valid: True
+Function: orders
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/palindrome.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: pow
+ Doms valid: True
+ Tree valid: True
+Function: palindrome
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/pascals-row.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: generateNthRow
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/perfect.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/permutation.bril
+Function: permutation
+ Doms valid: True
+ Tree valid: True
+Function: factorial
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/primes-between.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/pythagorean_triple.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/quadratic.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: sqrt
+ Doms valid: True
+ Tree valid: True
+Function: quadratic
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/recfact.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: fac
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/rectangles-area-difference.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: area
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/relative-primes.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+Function: gcd
+ Doms valid: True
+ Tree valid: True
+Function: relative_primes
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/reverse.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/rot13.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: rot
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sqrt_bin_search.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sum-bits.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sum-check.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: sum_by_loop
+ Doms valid: True
+ Tree valid: True
+Function: sum_by_formula
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sum-digits.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sum-divisors.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sum-of-cubes.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/sum-sq-diff.bril
+Function: sumOfSquares
+ Doms valid: True
+ Tree valid: True
+Function: squareOfSum
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/totient.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: totient
+ Doms valid: True
+ Tree valid: True
+Function: mod
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/triangle.bril
+Function: tri
+ Doms valid: True
+ Tree valid: True
+Function: main
+ Doms valid: True
+ Tree valid: True
+../../bril/benchmarks/core/up-arrow.bril
+Function: main
+ Doms valid: True
+ Tree valid: True
+Function: up_arrow
+ Doms valid: True
+ Tree valid: True

@@ -3,7 +3,6 @@ import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from task2.cfg.cfg import basic_blocks, cfg
-from task4.worklist import flip_cfg
 from dominators import dominators
 
 def dominator_tree(cfg, entry) -> dict:
@@ -20,7 +19,7 @@ def dominator_tree(cfg, entry) -> dict:
     Returns:
         A dictionary mapping each block label to the labels of its children in the tree.
     """
-    doms = dominators(graph, entry)
+    doms = dominators(cfg, entry)
     tree = {entry: []}
     # If both A and B dominate C, it must be that A dominates B or vice versa
     # Thus, any nodes' dominators form a path in the tree.
