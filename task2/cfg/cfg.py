@@ -25,7 +25,7 @@ def cfg(blocks, labels):
     for i, b in enumerate(blocks):
         if "op" in b[-1] and b[-1]["op"] in ("br", "jmp"):
             graph[i] = [labels[l] for l in b[-1]["labels"]]
-        elif len(blocks) > i+1 and "op" in b[-1] and b[-1]["op"] != "ret":
+        elif len(blocks) > i+1 and ("op" not in b[-1] or b[-1]["op"] != "ret"):
             graph[i] = [i+1]
         else:
             graph[i] = []
