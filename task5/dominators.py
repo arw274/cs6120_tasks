@@ -24,7 +24,7 @@ def dominators(cfg, entry) -> dict:
     dom = {block: set(cfg.keys()) for block in cfg}
     dom[entry] = {entry}
     flipped_cfg = flip_cfg(cfg)
-    rev_post = reverse_postorder(cfg, entry)
+    rev_post = postorder(cfg, entry)[::-1]
     logging.debug(f"Reverse postorder: {rev_post}")
 
     for block in rev_post:
@@ -38,8 +38,8 @@ def dominators(cfg, entry) -> dict:
 
     return dom
 
-def reverse_postorder(cfg, entry) -> list:
-    """Compute a reverse postorder traversal of the control flow graph.
+def postorder(cfg, entry) -> list:
+    """Compute a postorder traversal of the control flow graph.
 
     Args:
         cfg: A control flow graph represented as a dictionary mapping block
@@ -47,7 +47,7 @@ def reverse_postorder(cfg, entry) -> list:
         entry: The label of the entry block.
 
     Returns:
-        A list of block labels in reverse postorder.
+        A list of block labels in postorder.
     """
     visited = set()
     postorder = []
@@ -61,7 +61,7 @@ def reverse_postorder(cfg, entry) -> list:
         postorder.append(node)
 
     visit(entry)
-    return postorder[::-1]
+    return postorder
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
