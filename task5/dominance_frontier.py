@@ -42,18 +42,23 @@ def dominance_frontier(cfg, dom, dom_tree, entry) -> dict:
 
     # single pass in postorder should be sufficient?
     post = postorder(cfg, entry)
-    for b in post:
-        if not dom_tree[b]: 
-            continue  # leaf node, no children, empty dominance frontier
-            
-        # for each child c of b in dominator tree
-        for c in dom_tree[b]:
-            # add the blocks in c's dominance frontier and children of c 
-            # that b does not strictly dominate to b's dominance frontier
-            for g in df[c].union(cfg[c]):
-                if b not in dom[g]:
-                    df[b].add(g)
-        logging.debug(f"Block {b}, DF: {df[b]}")
+
+    changed = True
+    while changed:
+        changed = False
+        for b in post:
+            if not dom_tree[b]: 
+                continue  # leaf node, no children, empty dominance frontier
+                
+            # for each child c of b in dominator tree
+            for c in dom_tree[b]:
+                # add the blocks in c's dominance frontier and children of c 
+                # that b does not strictly dominate to b's dominance frontier
+                for g in df[c].union(cfg[c]):
+                    if b not in dom[g] and b not in df[b]:
+                        df[b].add(g)
+                        changed = True
+            logging.debug(f"Block {b}, DF: {df[b]}")
 
     return df
 

@@ -27,14 +27,20 @@ def dominators(cfg, entry) -> dict:
     rev_post = postorder(cfg, entry)[::-1]
     logging.debug(f"Reverse postorder: {rev_post}")
 
-    for block in rev_post:
-        if block == entry:
-            continue
-        if flipped_cfg[block]:
-            logging.debug(f"Block {block}, predecessors: {flipped_cfg[block]}") 
-            dom[block] = set.intersection(*[dom[pred] for pred in flipped_cfg[block]]) | {block}
-        else:
-            logging.debug(f"Warning: block {block} has no predecessors")
+    changed = True
+    while changed:
+        changed = False
+        for block in rev_post:
+            if block == entry:
+                continue
+            if flipped_cfg[block]:
+                logging.debug(f"Block {block}, predecessors: {flipped_cfg[block]}") 
+                update = set.intersection(*[dom[pred] for pred in flipped_cfg[block]]) | {block}
+                if dom[block] != update:
+                    dom[block] = update
+                    changed = True
+            else:
+                logging.debug(f"Warning: block {block} has no predecessors")
 
     return dom
 
