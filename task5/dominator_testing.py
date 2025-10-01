@@ -2,9 +2,10 @@ import os, sys, json
 import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from task2.cfg.cfg import basic_blocks, cfg
+from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
 from dominators import dominators
 from dominator_tree import dominator_tree
+from dominance_frontier import dominance_frontier
 
 def reachable_without(graph, entry, without):
     # do DFS from entry, except do not interact with node "without"
@@ -21,7 +22,8 @@ def reachable_without(graph, entry, without):
     return visited
 
 def brute_force_dominators(graph, entry):
-    all_nodes = set(graph.keys())
+    cfg = reachable_cfg(graph, entry)
+    all_nodes = set(cfg.keys())
     dominators = {n: set() for n in all_nodes}
     for n in all_nodes:
         # n dominates all nodes not in reachable_without
@@ -42,6 +44,23 @@ def dominators_from_tree(tree, entry):
     doms_from_subtree(entry, [])
     return doms
 
+# uses only dominators
+def brute_force_dominance_frontier(graph, dom, entry):
+    cfg = reachable_cfg(graph, entry)
+    dominated = {b: set() for b in cfg.keys()}
+    for b in cfg.keys():
+        for d in dom[b]:
+            dominated[d].add(b)
+
+    df = {b: set() for b in cfg.keys()}
+    for b in cfg.keys():
+        for d in dominated[b]:
+            for s in cfg[d]:
+                if b not in dom[s]:
+                    df[b].add(s)
+        
+    return df
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('-v', '--verbose', action='store_true')
@@ -58,5 +77,12 @@ if __name__ == "__main__":
         doms_bf = brute_force_dominators(graph, entry)
         tree = dominator_tree(graph, entry)
         doms_from_tree = dominators_from_tree(tree, entry)
+        df_bf = brute_force_dominance_frontier(graph, doms_orig, entry)
+        df_from_tree = dominance_frontier(graph, doms_from_tree, tree, entry)
         print(" Doms valid:", doms_orig == doms_bf)
         print(" Tree valid:", doms_orig == doms_from_tree)
+        print(" DF valid:", df_bf == df_from_tree)
+        if df_bf != df_from_tree:
+            print(reachable_cfg(graph, entry))
+            print("DF brute force:", df_bf)
+            print("DF from tree:", df_from_tree)

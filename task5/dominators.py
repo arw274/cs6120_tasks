@@ -2,7 +2,7 @@ import os, sys, json
 import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from task2.cfg.cfg import basic_blocks, cfg
+from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
 from task4.worklist import flip_cfg
 
 def dominators(cfg, entry) -> dict:
@@ -20,6 +20,7 @@ def dominators(cfg, entry) -> dict:
         A dictionary mapping each block label to the set of labels of blocks
         that dominate it.
     """
+    cfg = reachable_cfg(cfg, entry)
     # Initialize dominator sets
     dom = {block: set(cfg.keys()) for block in cfg}
     dom[entry] = {entry}

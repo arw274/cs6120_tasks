@@ -2,21 +2,9 @@ import os, sys, json
 import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from task2.cfg.cfg import basic_blocks, cfg
-from task4.worklist import flip_cfg
+from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
 from dominators import dominators, postorder
 from dominator_tree import dominator_tree
-
-def reachable_cfg(cfg, entry):
-    visited = set()
-    def visit(node):
-        if node in visited:
-            return
-        visited.add(node)
-        for succ in cfg[node]:
-            visit(succ)
-    visit(entry)
-    return {n: cfg[n] for n in visited}
 
 def dominance_frontier(cfg, dom, dom_tree, entry) -> dict:
     """Compute the dominance frontier for each block in a control flow graph.
@@ -36,29 +24,26 @@ def dominance_frontier(cfg, dom, dom_tree, entry) -> dict:
     Returns:
         A dictionary mapping each block label to the set of labels in its dominance frontier.
     """
-
+    cfg = reachable_cfg(cfg, entry)
     df = {b: set() for b in cfg.keys()}
-    flipped_cfg = flip_cfg(cfg)
 
     # single pass in postorder should be sufficient?
     post = postorder(cfg, entry)
 
-    changed = True
-    while changed:
-        changed = False
-        for b in post:
-            if not dom_tree[b]: 
-                continue  # leaf node, no children, empty dominance frontier
-                
+    for b in post:
+        if dom_tree[b]: 
             # for each child c of b in dominator tree
             for c in dom_tree[b]:
                 # add the blocks in c's dominance frontier and children of c 
                 # that b does not strictly dominate to b's dominance frontier
                 for g in df[c].union(cfg[c]):
-                    if b not in dom[g] and b not in df[b]:
+                    if b not in dom[g]:
                         df[b].add(g)
-                        changed = True
-            logging.debug(f"Block {b}, DF: {df[b]}")
+        # look at its successors
+        for s in cfg[b]:
+            if b not in dom[s]:
+                df[b].add(s)
+        logging.debug(f"Block {b}, DF: {df[b]}")
 
     return df
 
@@ -76,7 +61,7 @@ if __name__ == "__main__":
         blocks, labels = basic_blocks(func["instrs"], quiet=False)
         entry = 0  # Assuming the first block is the entry block
 
-        graph = reachable_cfg(cfg(blocks, labels), entry)
+        graph = cfg(blocks, labels)
         print("CFG:", graph)
         dom = dominators(graph, entry)
         print("Dominators:", dom)

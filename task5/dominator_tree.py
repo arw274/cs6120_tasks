@@ -2,7 +2,7 @@ import os, sys, json
 import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
-from task2.cfg.cfg import basic_blocks, cfg
+from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
 from dominators import dominators
 
 def dominator_tree(cfg, entry) -> dict:
@@ -19,6 +19,7 @@ def dominator_tree(cfg, entry) -> dict:
     Returns:
         A dictionary mapping each block label to the labels of its children in the tree.
     """
+    cfg = reachable_cfg(cfg, entry)
     doms = dominators(cfg, entry)
     tree = {entry: []}
     # If both A and B dominate C, it must be that A dominates B or vice versa
@@ -47,8 +48,8 @@ if __name__ == "__main__":
     for func in full_bril["functions"]:
         print("Function:", func["name"])
         blocks, labels = basic_blocks(func["instrs"], quiet=False)
-        graph = cfg(blocks, labels)
         entry = 0  # Assuming the first block is the entry block
+        graph = cfg(blocks, labels)
         dom_tree = dominator_tree(graph, entry)
         for b, d in dom_tree.items():
             print("Block", b, "children:", d)

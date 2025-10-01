@@ -1,476 +1,556 @@
-../../bril/benchmarks/core/ackermann.bril
 Function: ack
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/armstrong.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: getDigits
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: power
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/bbs.bril
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: lsb
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: square
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/binary-fmt.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: printBinary
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/binpow.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: is_even
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: bin_pow
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/bitshift.bril
+ DF valid: True
 Function: pow
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: LEFTSHIFT
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: RIGHTSHIFT
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/bitwise-ops.bril
+ DF valid: True
 Function: mod2
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: loop_subroutine
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: OR
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: AND
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: XOR
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/catalan.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: catalan
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/check-primes.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: checkPrime
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/collatz.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/combination.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: combo
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: factorial
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/delannoy.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: count_path
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/digital-root.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: is_single_digit
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: peel_last_digit
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/euclid.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: gcd
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/fact.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: fact
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/factors.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/fib_iter.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/fib_recursive.bril
-Function: main
- Doms valid: True
- Tree valid: True
+ DF valid: True
 Function: fib
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/fitsinside.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: fitsInside
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/fizz-buzz.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/gcd.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/gebmm.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mat_bitsel
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mat_packed_index
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: pow2
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: bitsel
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: abs
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: is_even
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: is_odd
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/geometric-sum.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/hamming.bril
+ DF valid: True
 Function: lsb
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: hamm_lsb
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/hanoi.bril
+ DF valid: True
 Function: hanoi
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/is-decreasing.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: is_decreasing
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: last_digit
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/karatsuba.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: karatsuba
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: num_digits
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: max
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: pow
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/lcm.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: getMod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/loopfact.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/mccarthy91.bril
+ DF valid: True
 Function: mccarthy91
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/mod_inv.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/mod_pow.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod_pow
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/montgomery.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/orders.bril
+ DF valid: True
 Function: abs
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: gcd
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: lcm
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: orders
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/palindrome.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: pow
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: palindrome
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/pascals-row.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: generateNthRow
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/perfect.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/permutation.bril
+ DF valid: True
 Function: permutation
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: factorial
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/primes-between.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/pythagorean_triple.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/quadratic.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: sqrt
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: quadratic
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/recfact.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: fac
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/rectangles-area-difference.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: area
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/relative-primes.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: gcd
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: relative_primes
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/reverse.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/rot13.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: rot
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sqrt_bin_search.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sum-bits.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sum-check.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: sum_by_loop
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: sum_by_formula
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sum-digits.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sum-divisors.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sum-of-cubes.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/sum-sq-diff.bril
+ DF valid: True
 Function: sumOfSquares
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: squareOfSum
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/totient.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: totient
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: mod
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/triangle.bril
+ DF valid: True
 Function: tri
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
-../../bril/benchmarks/core/up-arrow.bril
+ DF valid: True
 Function: main
  Doms valid: True
  Tree valid: True
+ DF valid: True
 Function: up_arrow
  Doms valid: True
  Tree valid: True
+ DF valid: True
