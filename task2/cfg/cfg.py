@@ -20,6 +20,18 @@ def basic_blocks(instrs, quiet=False):
             if not quiet: print("Block {}: {}".format(i, b))
     return [b for b in blocks if len(b) > 0], labels
 
+def reachable_cfg(cfg, entry):
+    visited = set()
+    def visit(node):
+        if node in visited:
+            return
+        visited.add(node)
+        for succ in cfg[node]:
+            visit(succ)
+
+    visit(entry)
+    return {n: cfg[n] for n in visited}
+
 def cfg(blocks, labels):
     graph = {}
     for i, b in enumerate(blocks):
