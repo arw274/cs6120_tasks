@@ -42,10 +42,10 @@ def get_uses(func) -> dict:
         A dict of (str: List) pairs of var names and blocks where var is used.
     """
     vars = {}
-    defined = set()
     
     blocks, _ = basic_blocks(func["instrs"], quiet=True)
     for i, block in enumerate(blocks):
+        defined = set()
         for instr in block:
             if "args" in instr:
                 for arg in instr["args"]:
@@ -137,6 +137,10 @@ def rename_vars(func, dom_tree, vars) -> None:
     graph = reachable_cfg(cfg(blocks, labels), 0)
     counters = {v: 0 for v in vars.keys()}  # current version of each var
     stacks = {v: [] for v in vars.keys()}   # stack of versions of each var
+    gets = [[] for b in range(len(blocks))]
+    # which variables each block has to get and what the new name is
+    defs_rename = [{} for b in range(len(blocks))]
+    # which variables each block defines and what the new name is
 
     def rename_block(b):
         assigned_in_block = []  # list of (var, new_name) assigned in this block
@@ -156,26 +160,15 @@ def rename_vars(func, dom_tree, vars) -> None:
                 counters[var] += 1
                 instr["dest"] = new_name
                 assigned_in_block.append((var, new_name))
-        
-        # for child in cfg:
-        #     # TODO: for p in child's get instructions, add set instruction in b with current version of p(var)
+                if instr["op"] == "get":
+                    gets[b].append((var, new_name))
         
         for child in dom_tree.get(b, []):
             rename_block(child)
 
-        sets_to_append = {}
         for var, new_name in assigned_in_block:
-            sets_to_append[var] = new_name
+            defs_rename[b][var] = new_name
             # might overwrite; this is intended; get last new_name used in block
-        insert_pt = len(blocks[b])
-        if "op" in blocks[b][-1] and blocks[b][-1]["op"] in ("jmp", "br"):
-            insert_pt -= 1
-        for v in sets_to_append:
-            blocks[b].insert(insert_pt,
-            {
-                "op": "set",
-                "args": [v, sets_to_append[v]]
-            })
         
         for var, _ in assigned_in_block:
             stacks[var].pop()
@@ -184,6 +177,19 @@ def rename_vars(func, dom_tree, vars) -> None:
         if -1 in vars[v]:  # function argument
             stacks[v].append(-1)
     rename_block(0)  # assuming entry block is 0
+
+    for b in range(len(blocks)):
+        insert_pt = len(blocks[b])
+        if "op" in blocks[b][-1] and blocks[b][-1]["op"] in ("jmp", "br"):
+            insert_pt -= 1
+        for child in graph[b]:
+            for v, new_name in gets[child]:
+                blocks[b].insert(insert_pt,
+                {
+                    "op": "set",
+                    "args": [new_name, defs_rename[b][v]]
+                })
+
     func["instrs"] = [instr for block in blocks for instr in block]
 
 if __name__ == "__main__":
@@ -195,16 +201,18 @@ if __name__ == "__main__":
     full_bril = json.load(sys.stdin)
     for func in full_bril["functions"]:
         # add new entry block so it can set up the args
-        func["instrs"].insert(0, {"label": "__entry__"})
-        func["instrs"].insert(0, {"label": "__entry__.0"})
+        if "label" not in func["instrs"][0]:
+            func["instrs"].insert(0, {"label": "__entry__"}) # make space for set-only block
         blocks, labels = basic_blocks(func["instrs"], quiet=True)
         entry = 0  # Assuming the first block is the entry block
         graph = reachable_cfg(cfg(blocks, labels), entry)
-        doms = dominators(graph, entry)
         dom_tree = dominator_tree(graph, entry)
-        # df = dominance_frontier(graph, doms, dom_tree, entry)
         defs = get_defs(func)
-        # add_phi_nodes(func, df, defs)
-        add_phi_nodes_new(func, defs, get_uses(func))
+        uses = get_uses(func)
+        add_phi_nodes_new(func, defs, uses)
         rename_vars(func, dom_tree, defs)
+        if "args" in func:
+            for v in func["args"]:
+                orig_name = v["name"]
+                func["instrs"].insert(0, {"op": "set", "args": [f"{orig_name}.0", orig_name]})
     print(json.dumps(full_bril))
