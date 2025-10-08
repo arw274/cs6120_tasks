@@ -13,3 +13,11 @@ pipeline = [
     "python3 toSSA.py",
     "brili -p {args}",
 ]
+
+[runs.roundtrip]
+pipeline = [
+    "bril2json",
+    "python3 toSSA.py",
+    "python3 fromSSA.py",
+    "brili -p {args}",
+]
