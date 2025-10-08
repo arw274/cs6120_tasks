@@ -3,8 +3,8 @@ import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
-from dominators import dominators, postorder
-from dominator_tree import dominator_tree
+from .dominators import dominators, postorder
+from .dominator_tree import dominator_tree
 
 def dominance_frontier(cfg, dom, dom_tree, entry) -> dict:
     """Compute the dominance frontier for each block in a control flow graph.

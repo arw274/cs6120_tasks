@@ -3,7 +3,7 @@ import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
-from dominators import dominators
+from .dominators import dominators
 
 def dominator_tree(cfg, entry) -> dict:
     """Compute the dominator tree for a control flow graph.
