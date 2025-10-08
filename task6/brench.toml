@@ -1,0 +1,15 @@
+extract = 'total_dyn_inst: (\d+)'
+benchmarks = '../../bril/benchmarks/core/*.bril'
+
+[runs.baseline]
+pipeline = [
+    "bril2json",
+    "brili -p {args}",
+]
+
+[runs.toSSA]
+pipeline = [
+    "bril2json",
+    "python3 toSSA.py",
+    "brili -p {args}",
+]
