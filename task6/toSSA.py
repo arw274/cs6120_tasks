@@ -2,6 +2,7 @@ import os, sys, json
 import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
+from task4.worklist import flip_cfg
 from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
 from task5.dominators import dominators, postorder
 from task5.dominator_tree import dominator_tree
@@ -31,6 +32,30 @@ def get_defs(func) -> dict:
 
     return vars
 
+def get_uses(func) -> dict:
+    """Get the set of variables used in a function.
+
+    Args:
+        func: a function in bril JSON format.
+    
+    Returns:
+        A dict of (str: List) pairs of var names and blocks where var is used.
+    """
+    vars = {}
+    defined = set()
+    
+    blocks, _ = basic_blocks(func["instrs"], quiet=True)
+    for i, block in enumerate(blocks):
+        for instr in block:
+            if "args" in instr:
+                for arg in instr["args"]:
+                    if arg not in vars and arg not in defined:
+                        vars[arg] = []
+                    if arg not in defined:
+                        vars[arg].append(i)
+            if "dest" in instr:
+                defined.add(instr["dest"])
+    return vars
 
 def add_phi_nodes(func, df, vars) -> dict:
     """Insert phi nodes (get's only) for variables in blocks in their dominance frontiers.
@@ -69,6 +94,35 @@ def add_phi_nodes(func, df, vars) -> dict:
     # flatten blocks back into instrs
     func["instrs"] = [instr for block in blocks for instr in block]
     
+def add_phi_nodes_new(func, def_blocks, use_blocks) -> dict:
+    blocks, labels = basic_blocks(func["instrs"], quiet=True)
+    graph = cfg(blocks, labels)
+    flipped_graph = flip_cfg(graph)
+    phi_placed = {}
+    def place_nodes(block_idx, var):
+        if var in phi_placed and block_idx in phi_placed[var]:
+            return
+        # place phi node in block
+        insert_pt = 0
+        if "label" in blocks[block_idx][0]:
+            insert_pt = 1
+        blocks[block_idx].insert(insert_pt, {"op": "get", "args": [], "dest": var, "type": "int"}) # TODO: need types!
+        # add block to list of placed
+        if var not in phi_placed:
+            phi_placed[var] = []
+        phi_placed[var].append(block_idx)
+        # recurse on predecessors not in def_blocks:
+        for b in flipped_graph[block_idx]:
+            if b not in def_blocks[var]:
+                place_nodes(b, var)
+    
+    for v in use_blocks:
+        for b in use_blocks[v]:
+            place_nodes(b, v)
+    
+    # flatten blocks back into instrs
+    func["instrs"] = [instr for block in blocks for instr in block]
+
 
 # TODO: handle cases where var is undefined along some paths (add undef?)
 def rename_vars(func, dom_tree, vars) -> None:
@@ -113,9 +167,12 @@ def rename_vars(func, dom_tree, vars) -> None:
         for var, new_name in assigned_in_block:
             sets_to_append[var] = new_name
             # might overwrite; this is intended; get last new_name used in block
-        
+        insert_pt = len(blocks[b])
+        if "op" in blocks[b][-1] and blocks[b][-1]["op"] in ("jmp", "br"):
+            insert_pt -= 1
         for v in sets_to_append:
-            blocks[b].append({
+            blocks[b].insert(insert_pt,
+            {
                 "op": "set",
                 "args": [v, sets_to_append[v]]
             })
@@ -137,13 +194,17 @@ if __name__ == "__main__":
 
     full_bril = json.load(sys.stdin)
     for func in full_bril["functions"]:
+        # add new entry block so it can set up the args
+        func["instrs"].insert(0, {"label": "__entry__"})
+        func["instrs"].insert(0, {"label": "__entry__.0"})
         blocks, labels = basic_blocks(func["instrs"], quiet=True)
         entry = 0  # Assuming the first block is the entry block
         graph = reachable_cfg(cfg(blocks, labels), entry)
         doms = dominators(graph, entry)
         dom_tree = dominator_tree(graph, entry)
-        df = dominance_frontier(graph, doms, dom_tree, entry)
+        # df = dominance_frontier(graph, doms, dom_tree, entry)
         defs = get_defs(func)
-        add_phi_nodes(func, df, defs)
+        # add_phi_nodes(func, df, defs)
+        add_phi_nodes_new(func, defs, get_uses(func))
         rename_vars(func, dom_tree, defs)
     print(json.dumps(full_bril))
