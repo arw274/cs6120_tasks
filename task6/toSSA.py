@@ -21,7 +21,7 @@ def get_defs(func) -> dict:
     for arg in func.get("args", []):
         vars[arg["name"]] = [-1]
     
-    blocks, _ = basic_blocks(func["instrs"], quiet=False)
+    blocks, _ = basic_blocks(func["instrs"], quiet=True)
     for i, block in enumerate(blocks):
         for instr in block:
             if "dest" in instr:
@@ -55,10 +55,13 @@ def add_phi_nodes(func, df, vars) -> dict:
                 continue
             for d in df[b]:
                 if d not in has_already:
+                    insert_pt = 0
+                    if "label" in blocks[d][0]:
+                        insert_pt = 1
                     if var not in phi:
                         phi[var] = []
                     phi[var].append(d)
-                    blocks[d].insert(0, {"op": "get", "args": [], "dest": var, "type": "int"}) # TODO: need types!
+                    blocks[d].insert(insert_pt, {"op": "get", "args": [], "dest": var, "type": "int"}) # TODO: need types!
                     has_already.add(d)
                     if d not in def_blocks:
                         worklist.append(d)
@@ -77,7 +80,7 @@ def rename_vars(func, dom_tree, vars) -> None:
         vars: dict of (str: List) pairs of var names and blocks where var is assigned.
     """
     blocks, labels = basic_blocks(func["instrs"], quiet=True)
-    cfg = reachable_cfg(cfg(blocks, labels), 0)
+    graph = reachable_cfg(cfg(blocks, labels), 0)
     counters = {v: 0 for v in vars.keys()}  # current version of each var
     stacks = {v: [] for v in vars.keys()}   # stack of versions of each var
 
@@ -85,7 +88,13 @@ def rename_vars(func, dom_tree, vars) -> None:
         assigned_in_block = []  # list of (var, new_name) assigned in this block
         for instr in blocks[b]:
             if "args" in instr and instr["args"]:
-                instr["args"] = [f"{arg}.{stacks[arg][-1]}" for arg in instr["args"]]
+                new_args = []
+                for arg in instr["args"]:
+                    if stacks[arg][-1] >= 0:
+                        new_args.append(f"{arg}.{stacks[arg][-1]}")
+                    else:
+                        new_args.append(arg)
+                instr["args"] = new_args
             if "dest" in instr:
                 var = instr["dest"]
                 new_name = f"{var}.{counters[var]}"
@@ -94,11 +103,22 @@ def rename_vars(func, dom_tree, vars) -> None:
                 instr["dest"] = new_name
                 assigned_in_block.append((var, new_name))
         
-        for child in cfg:
-            # TODO: for p in child's get instructions, add set instruction in b with current version of p(var)
+        # for child in cfg:
+        #     # TODO: for p in child's get instructions, add set instruction in b with current version of p(var)
         
         for child in dom_tree.get(b, []):
             rename_block(child)
+
+        sets_to_append = {}
+        for var, new_name in assigned_in_block:
+            sets_to_append[var] = new_name
+            # might overwrite; this is intended; get last new_name used in block
+        
+        for v in sets_to_append:
+            blocks[b].append({
+                "op": "set",
+                "args": [v, sets_to_append[v]]
+            })
         
         for var, _ in assigned_in_block:
             stacks[var].pop()
@@ -108,3 +128,22 @@ def rename_vars(func, dom_tree, vars) -> None:
             stacks[v].append(-1)
     rename_block(0)  # assuming entry block is 0
     func["instrs"] = [instr for block in blocks for instr in block]
+
+if __name__ == "__main__":
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('-v', '--verbose', action='store_true')
+    # args = parser.parse_args()
+    # logging.basicConfig(level=logging.DEBUG if args.verbose else logging.WARNING)
+
+    full_bril = json.load(sys.stdin)
+    for func in full_bril["functions"]:
+        blocks, labels = basic_blocks(func["instrs"], quiet=True)
+        entry = 0  # Assuming the first block is the entry block
+        graph = reachable_cfg(cfg(blocks, labels), entry)
+        doms = dominators(graph, entry)
+        dom_tree = dominator_tree(graph, entry)
+        df = dominance_frontier(graph, doms, dom_tree, entry)
+        defs = get_defs(func)
+        add_phi_nodes(func, df, defs)
+        rename_vars(func, dom_tree, defs)
+    print(json.dumps(full_bril))
