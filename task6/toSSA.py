@@ -57,6 +57,31 @@ def get_uses(func) -> dict:
                 defined.add(instr["dest"])
     return vars
 
+def get_defs_uses_types(func) -> tuple[dict,dict,dict]:
+    defs = {}
+    uses = {}
+    types = {}
+    for arg in func.get("args", []):
+        defs[arg["name"]] = [-1]
+        types[arg["name"]] = arg["type"]
+    
+    blocks, _ = basic_blocks(func["instrs"], quiet=True)
+    for i, block in enumerate(blocks):
+        for instr in block:
+            if "args" in instr:
+                for arg in instr["args"]:
+                    if arg not in defs or i not in defs[arg]:
+                        if arg not in uses:
+                            uses[arg] = []
+                        uses[arg].append(i)
+            if "dest" in instr:
+                if instr["dest"] not in defs:
+                    defs[instr["dest"]] = []
+                defs[instr["dest"]].append(i)
+                types[instr["dest"]] = instr["type"]
+
+    return defs, uses, types
+
 def add_phi_nodes(func, df, vars) -> dict:
     """Insert phi nodes (get's only) for variables in blocks in their dominance frontiers.
 
@@ -94,7 +119,7 @@ def add_phi_nodes(func, df, vars) -> dict:
     # flatten blocks back into instrs
     func["instrs"] = [instr for block in blocks for instr in block]
     
-def add_phi_nodes_new(func, def_blocks, use_blocks) -> dict:
+def add_phi_nodes_new(func, def_blocks, use_blocks, types) -> dict:
     blocks, labels = basic_blocks(func["instrs"], quiet=True)
     graph = cfg(blocks, labels)
     flipped_graph = flip_cfg(graph)
@@ -106,7 +131,7 @@ def add_phi_nodes_new(func, def_blocks, use_blocks) -> dict:
         insert_pt = 0
         if "label" in blocks[block_idx][0]:
             insert_pt = 1
-        blocks[block_idx].insert(insert_pt, {"op": "get", "args": [], "dest": var, "type": "int"}) # TODO: need types!
+        blocks[block_idx].insert(insert_pt, {"op": "get", "args": [], "dest": var, "type": types[var]}) # TODO: need types!
         # add block to list of placed
         if var not in phi_placed:
             phi_placed[var] = []
@@ -207,9 +232,8 @@ if __name__ == "__main__":
         entry = 0  # Assuming the first block is the entry block
         graph = reachable_cfg(cfg(blocks, labels), entry)
         dom_tree = dominator_tree(graph, entry)
-        defs = get_defs(func)
-        uses = get_uses(func)
-        add_phi_nodes_new(func, defs, uses)
+        defs, uses, types = get_defs_uses_types(func)
+        add_phi_nodes_new(func, defs, uses, types)
         rename_vars(func, dom_tree, defs)
         if "args" in func:
             for v in func["args"]:
