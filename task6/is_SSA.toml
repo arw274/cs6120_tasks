@@ -1,0 +1,9 @@
+extract = '(yes)'
+benchmarks = '../../bril/benchmarks/[cf]*/*.bril'
+
+[runs.isSSA]
+pipeline = [
+    "bril2json",
+    "python toSSA.py",
+    "python ../../bril/examples/is_SSA.py",
+]

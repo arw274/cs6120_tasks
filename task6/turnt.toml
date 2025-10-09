@@ -1,1 +1,0 @@
-command = "bril2json < {filename} | python toSSA.py | python ../../bril/examples/is_SSA.py"
