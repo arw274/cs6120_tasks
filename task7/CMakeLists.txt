@@ -20,3 +20,4 @@ link_directories(${LLVM_LIBRARY_DIRS})
 
 # Our pass lives in this subdirectory.
 add_subdirectory(constant_folding)
+add_subdirectory(mul_to_add)

@@ -14,13 +14,14 @@ struct MulToAddPass : public PassInfoMixin<MulToAddPass> {
         bool changed = false;
         auto& ctx = M.getContext();
         auto* rettype = Type::getInt32Ty(ctx);
-        std::vector<Type*> paramtypes = {Type::getInt32Ty(ctx)};
+        std::vector<Type*> paramtypes = {Type::getInt32Ty(ctx), Type::getInt32Ty(ctx)};
         auto mua = M.getOrInsertFunction("mul_using_add", FunctionType::get(rettype, paramtypes, false));
         for (auto &F : M.functions()) {
             for (auto &B : F) {
+                std::vector<Instruction*> to_erase;
                 for (auto &I : B) {
                     if (auto *op = dyn_cast<BinaryOperator>(&I)) {
-                        if (op->getOpcode() == Mul){
+                        if (op->getOpcode() == llvm::Instruction::Mul){
                             Value* lhs = op->getOperand(0);
                             Value* rhs = op->getOperand(1);
                             if (lhs->getType()->isIntegerTy(32) && 
@@ -35,11 +36,13 @@ struct MulToAddPass : public PassInfoMixin<MulToAddPass> {
                                     auto *user = U.getUser();
                                     user->setOperand(U.getOperandNo(), new_mul);
                                 }
-                                // TODO: erase op
+                                to_erase.push_back(op);
                             }
                         }
                     }
                 }
+                for (auto* op : to_erase)
+                    op->eraseFromParent();
             }
         }
         if (changed) {
