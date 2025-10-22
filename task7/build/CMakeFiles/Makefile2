@@ -63,17 +63,14 @@ CMAKE_BINARY_DIR = /Users/amandawang/Documents/cs6120_tasks/task7/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: constant_folding/all
 all: mul_to_add/all
 .PHONY : all
 
 # The main recursive "codegen" target.
-codegen: constant_folding/codegen
 codegen: mul_to_add/codegen
 .PHONY : codegen
 
 # The main recursive "preinstall" target.
-preinstall: constant_folding/preinstall
 preinstall: mul_to_add/preinstall
 .PHONY : preinstall
 
@@ -83,30 +80,8 @@ clean: CMakeFiles/vt_gen.dir/clean
 clean: CMakeFiles/omp_gen.dir/clean
 clean: CMakeFiles/acc_gen.dir/clean
 clean: CMakeFiles/target_parser_gen.dir/clean
-clean: constant_folding/clean
 clean: mul_to_add/clean
 .PHONY : clean
-
-#=============================================================================
-# Directory level rules for directory constant_folding
-
-# Recursive "all" directory target.
-constant_folding/all: constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-.PHONY : constant_folding/all
-
-# Recursive "codegen" directory target.
-constant_folding/codegen: constant_folding/CMakeFiles/ConstantFoldingPass.dir/codegen
-.PHONY : constant_folding/codegen
-
-# Recursive "preinstall" directory target.
-constant_folding/preinstall:
-.PHONY : constant_folding/preinstall
-
-# Recursive "clean" directory target.
-constant_folding/clean: constant_folding/CMakeFiles/ConstantFoldingPass.dir/clean
-constant_folding/clean: constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/clean
-constant_folding/clean: constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/clean
-.PHONY : constant_folding/clean
 
 #=============================================================================
 # Directory level rules for directory mul_to_add
@@ -290,109 +265,13 @@ CMakeFiles/target_parser_gen.dir/clean:
 .PHONY : CMakeFiles/target_parser_gen.dir/clean
 
 #=============================================================================
-# Target rules for target constant_folding/CMakeFiles/ConstantFoldingPass.dir
-
-# All Build rule for target.
-constant_folding/CMakeFiles/ConstantFoldingPass.dir/all:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/ConstantFoldingPass.dir/depend
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/ConstantFoldingPass.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num=1,2 "Built target ConstantFoldingPass"
-.PHONY : constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-
-# Build rule for subdir invocation for target.
-constant_folding/CMakeFiles/ConstantFoldingPass.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles 0
-.PHONY : constant_folding/CMakeFiles/ConstantFoldingPass.dir/rule
-
-# Convenience name for target.
-ConstantFoldingPass: constant_folding/CMakeFiles/ConstantFoldingPass.dir/rule
-.PHONY : ConstantFoldingPass
-
-# codegen rule for target.
-constant_folding/CMakeFiles/ConstantFoldingPass.dir/codegen:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/ConstantFoldingPass.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num=1,2 "Finished codegen for target ConstantFoldingPass"
-.PHONY : constant_folding/CMakeFiles/ConstantFoldingPass.dir/codegen
-
-# clean rule for target.
-constant_folding/CMakeFiles/ConstantFoldingPass.dir/clean:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/ConstantFoldingPass.dir/clean
-.PHONY : constant_folding/CMakeFiles/ConstantFoldingPass.dir/clean
-
-#=============================================================================
-# Target rules for target constant_folding/CMakeFiles/install-ConstantFoldingPass.dir
-
-# All Build rule for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/all: constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/depend
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num= "Built target install-ConstantFoldingPass"
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/all
-
-# Build rule for subdir invocation for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles 0
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/rule
-
-# Convenience name for target.
-install-ConstantFoldingPass: constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/rule
-.PHONY : install-ConstantFoldingPass
-
-# codegen rule for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/codegen: constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num= "Finished codegen for target install-ConstantFoldingPass"
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/codegen
-
-# clean rule for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/clean:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/clean
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/clean
-
-#=============================================================================
-# Target rules for target constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir
-
-# All Build rule for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/all: constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/depend
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num= "Built target install-ConstantFoldingPass-stripped"
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/all
-
-# Build rule for subdir invocation for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles 0
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/rule
-
-# Convenience name for target.
-install-ConstantFoldingPass-stripped: constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/rule
-.PHONY : install-ConstantFoldingPass-stripped
-
-# codegen rule for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/codegen: constant_folding/CMakeFiles/ConstantFoldingPass.dir/all
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num= "Finished codegen for target install-ConstantFoldingPass-stripped"
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/codegen
-
-# clean rule for target.
-constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/clean:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/clean
-.PHONY : constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/clean
-
-#=============================================================================
 # Target rules for target mul_to_add/CMakeFiles/MulToAddPass.dir
 
 # All Build rule for target.
 mul_to_add/CMakeFiles/MulToAddPass.dir/all:
 	$(MAKE) $(MAKESILENT) -f mul_to_add/CMakeFiles/MulToAddPass.dir/build.make mul_to_add/CMakeFiles/MulToAddPass.dir/depend
 	$(MAKE) $(MAKESILENT) -f mul_to_add/CMakeFiles/MulToAddPass.dir/build.make mul_to_add/CMakeFiles/MulToAddPass.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num=3,4 "Built target MulToAddPass"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num=1,2 "Built target MulToAddPass"
 .PHONY : mul_to_add/CMakeFiles/MulToAddPass.dir/all
 
 # Build rule for subdir invocation for target.
@@ -409,7 +288,7 @@ MulToAddPass: mul_to_add/CMakeFiles/MulToAddPass.dir/rule
 # codegen rule for target.
 mul_to_add/CMakeFiles/MulToAddPass.dir/codegen:
 	$(MAKE) $(MAKESILENT) -f mul_to_add/CMakeFiles/MulToAddPass.dir/build.make mul_to_add/CMakeFiles/MulToAddPass.dir/codegen
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num=3,4 "Finished codegen for target MulToAddPass"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles --progress-num=1,2 "Finished codegen for target MulToAddPass"
 .PHONY : mul_to_add/CMakeFiles/MulToAddPass.dir/codegen
 
 # clean rule for target.

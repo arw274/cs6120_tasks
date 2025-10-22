@@ -39,7 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/cmake_install.cmake")
   include("/Users/amandawang/Documents/cs6120_tasks/task7/build/mul_to_add/cmake_install.cmake")
 
 endif()

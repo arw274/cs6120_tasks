@@ -9,15 +9,6 @@
 /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles/install.dir
 /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles/install/local.dir
 /Users/amandawang/Documents/cs6120_tasks/task7/build/CMakeFiles/install/strip.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/ConstantFoldingPass.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/install-ConstantFoldingPass.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/edit_cache.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/rebuild_cache.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/list_install_components.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/install.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/install/local.dir
-/Users/amandawang/Documents/cs6120_tasks/task7/build/constant_folding/CMakeFiles/install/strip.dir
 /Users/amandawang/Documents/cs6120_tasks/task7/build/mul_to_add/CMakeFiles/MulToAddPass.dir
 /Users/amandawang/Documents/cs6120_tasks/task7/build/mul_to_add/CMakeFiles/install-MulToAddPass.dir
 /Users/amandawang/Documents/cs6120_tasks/task7/build/mul_to_add/CMakeFiles/install-MulToAddPass-stripped.dir

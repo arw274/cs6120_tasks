@@ -11,7 +11,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "CMakeFiles/4.1.2/CMakeCCompiler.cmake"
   "CMakeFiles/4.1.2/CMakeCXXCompiler.cmake"
   "CMakeFiles/4.1.2/CMakeSystem.cmake"
-  "/Users/amandawang/Documents/cs6120_tasks/task7/constant_folding/CMakeLists.txt"
   "/Users/amandawang/Documents/cs6120_tasks/task7/mul_to_add/CMakeLists.txt"
   "/opt/homebrew/Cellar/llvm/21.1.3_1/lib/cmake/llvm/LLVM-Config.cmake"
   "/opt/homebrew/Cellar/llvm/21.1.3_1/lib/cmake/llvm/LLVMExports-release.cmake"
@@ -82,7 +81,6 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "constant_folding/CMakeFiles/CMakeDirectoryInformation.cmake"
   "mul_to_add/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
@@ -93,9 +91,6 @@ set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/omp_gen.dir/DependInfo.cmake"
   "CMakeFiles/acc_gen.dir/DependInfo.cmake"
   "CMakeFiles/target_parser_gen.dir/DependInfo.cmake"
-  "constant_folding/CMakeFiles/ConstantFoldingPass.dir/DependInfo.cmake"
-  "constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/DependInfo.cmake"
-  "constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/DependInfo.cmake"
   "mul_to_add/CMakeFiles/MulToAddPass.dir/DependInfo.cmake"
   "mul_to_add/CMakeFiles/install-MulToAddPass.dir/DependInfo.cmake"
   "mul_to_add/CMakeFiles/install-MulToAddPass-stripped.dir/DependInfo.cmake"

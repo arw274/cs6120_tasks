@@ -87,7 +87,7 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target list_install_components
 list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"ConstantFoldingPass\" \"MulToAddPass\""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"MulToAddPass\""
 .PHONY : list_install_components
 
 # Special rule for the target list_install_components
@@ -227,45 +227,6 @@ target_parser_gen/fast:
 .PHONY : target_parser_gen/fast
 
 #=============================================================================
-# Target rules for targets named ConstantFoldingPass
-
-# Build rule for target.
-ConstantFoldingPass: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ConstantFoldingPass
-.PHONY : ConstantFoldingPass
-
-# fast build rule for target.
-ConstantFoldingPass/fast:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/ConstantFoldingPass.dir/build
-.PHONY : ConstantFoldingPass/fast
-
-#=============================================================================
-# Target rules for targets named install-ConstantFoldingPass
-
-# Build rule for target.
-install-ConstantFoldingPass: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 install-ConstantFoldingPass
-.PHONY : install-ConstantFoldingPass
-
-# fast build rule for target.
-install-ConstantFoldingPass/fast:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass.dir/build
-.PHONY : install-ConstantFoldingPass/fast
-
-#=============================================================================
-# Target rules for targets named install-ConstantFoldingPass-stripped
-
-# Build rule for target.
-install-ConstantFoldingPass-stripped: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 install-ConstantFoldingPass-stripped
-.PHONY : install-ConstantFoldingPass-stripped
-
-# fast build rule for target.
-install-ConstantFoldingPass-stripped/fast:
-	$(MAKE) $(MAKESILENT) -f constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build.make constant_folding/CMakeFiles/install-ConstantFoldingPass-stripped.dir/build
-.PHONY : install-ConstantFoldingPass-stripped/fast
-
-#=============================================================================
 # Target rules for targets named MulToAddPass
 
 # Build rule for target.
@@ -317,15 +278,12 @@ help:
 	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... acc_gen"
-	@echo "... install-ConstantFoldingPass"
-	@echo "... install-ConstantFoldingPass-stripped"
 	@echo "... install-MulToAddPass"
 	@echo "... install-MulToAddPass-stripped"
 	@echo "... intrinsics_gen"
 	@echo "... omp_gen"
 	@echo "... target_parser_gen"
 	@echo "... vt_gen"
-	@echo "... ConstantFoldingPass"
 	@echo "... MulToAddPass"
 .PHONY : help
 
