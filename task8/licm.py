@@ -1,5 +1,4 @@
 import os, sys, json
-import argparse, logging
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../')))
 from task2.cfg.cfg import basic_blocks, cfg, reachable_cfg
@@ -16,15 +15,12 @@ def create_preheaders(func):
     doms = dominators(graph, entry)
     headers_loops = natural_loops(graph, doms)
     reverse_graph = flip_cfg(graph)
-    all_headers = set()
     for (h, l) in headers_loops:
-        all_headers.add(h)
-    for h in all_headers:
         outside_loop_preds = []
         for i in reverse_graph[h]:
             if i not in l:
                 outside_loop_preds.append(i)
-        if len(outside_loop_preds) > 1 or len(graph[outside_loop_preds[0]]) > 1:
+        if len(outside_loop_preds) != 1 or len(graph[outside_loop_preds[0]]) > 1:
             # create preheader
             label = blocks[h][0]["label"]
             blocks[h].insert(0, {"label": label+"__preheader"})
@@ -41,6 +37,7 @@ def single_loop_licm(all_blocks, cfg, doms, loop, preheader_idx):
     li_instrs = []
     non_li_vars = set()
     var_num_defs = {}
+    uses = {}
     for block in loop:
         for instr in all_blocks[block]:
             if "dest" in instr:
@@ -49,6 +46,12 @@ def single_loop_licm(all_blocks, cfg, doms, loop, preheader_idx):
                     var_num_defs[instr["dest"]] += 1
                 else:
                     var_num_defs[instr["dest"]] = 1
+            if "args" in instr:
+                for a in instr["args"]:
+                    if a in uses:
+                        uses[a].append(block)
+                    else:
+                        uses[a] = [block]
     
     exits = []
     for block in loop:
@@ -68,7 +71,14 @@ def single_loop_licm(all_blocks, cfg, doms, loop, preheader_idx):
         for block in loop:
             to_move_now = []
             for j, instr in enumerate(all_blocks[block]):
-                if (block, j) not in li_instrs and "dest" in instr and var_num_defs[instr["dest"]] == 1:
+                unique_def = "dest" in instr and var_num_defs[instr["dest"]] == 1
+                dominates_uses = False
+                if "dest" in instr:
+                    if instr["dest"] not in uses:
+                        dominates_uses = True
+                    else:
+                        dominates_uses = all([block in doms[b] for b in uses[instr["dest"]]])
+                if (block, j) not in li_instrs and unique_def and dominates_uses:
                     if "args" not in instr or all([a not in non_li_vars for a in instr["args"]]):
                         # loop invariant instr
                         move = False
@@ -95,12 +105,9 @@ if __name__ == "__main__":
         blocks, labels = basic_blocks(func["instrs"], quiet=True)
         entry = 0  # Assuming the first block is the entry block
         graph = reachable_cfg(cfg(blocks, labels), entry)
-        # print(graph)
         reverse_graph = flip_cfg(graph)
         doms = dominators(graph, entry)
-        # print(labels)
         for l in natural_loops(graph, doms):
-            # print(l)
             single_loop_licm(blocks, graph, doms, l[1], reverse_graph[l[0]][0])
         func["instrs"] = [instr for block in blocks for instr in block]
     print(json.dumps(full_bril))
