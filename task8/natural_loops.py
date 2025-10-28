@@ -47,6 +47,16 @@ def natural_loops(cfg, dominators):
             added = to_add
             to_add = set()
         loops.append((v, loop_nodes))
+    # merge all overlapping non-nested loops with the same header
+    for i in range(len(loops)-1, -1, -1):
+        for j in range(i-1, -1, -1):
+            if loops[i][0] == loops[j][0]:
+                # possible merge
+                blocks_union = loops[i][1] | loops[j][1]
+                if len(blocks_union) > max(len(loops[i][1]), len(loops[j][1])):
+                    # merge
+                    loops[j] = (loops[j][0], blocks_union)
+                    del loops[i]
     return loops
 
 
