@@ -31,10 +31,10 @@ def preprocess_trace(trace, guard_label_name):
                     cond = instr['args'][0]
                     inverted_cond = cond+'_TRACE_INVERTED__'
                     processed_trace.append(
-                        {'type': 'bool', 'dest': inverted_cond, 'op': 'not', 'args': cond}
+                        {'type': 'bool', 'dest': inverted_cond, 'op': 'not', 'args': [cond]}
                     )
                     processed_trace.append(
-                        {'op': 'guard', 'args': inverted_cond, 'labels':[guard_label_name]}
+                        {'op': 'guard', 'args': [inverted_cond], 'labels':[guard_label_name]}
                     )
                 continue
             if instr['op'] == 'div':
