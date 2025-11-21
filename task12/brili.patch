@@ -1,0 +1,44 @@
+diff --git a/brili.ts b/brili.ts
+index fcc9a76..ebab5ab 100644
+--- a/brili.ts
++++ b/brili.ts
+@@ -830,8 +830,39 @@ function evalInstr(instr: bril.Instruction, state: State): Action {
+ }
+ 
+ function evalFunc(func: bril.Function, state: State): Value | null {
++  var labels_seen:String[] = [];
++  var trace:String[] = [];
++  var should_trace:boolean = true;
++  var tracing:boolean = false;
+   for (let i = 0; i < func.instrs.length; ++i) {
+     const line = func.instrs[i];
++    if ("label" in line) {
++      if (labels_seen.includes(line.label)) {
++        if (trace.length === 0) {
++          // start tracing
++          labels_seen = [];
++          trace = [];
++          tracing = true;
++        } else if (should_trace) {
++          // stop tracing
++          // print everything
++          trace.push(JSON.stringify(line));
++          console.log("TRACE: FUNC:", func.name);
++          trace.forEach((l)=>{console.log("TRACE:", l)});
++          labels_seen = [];
++          trace = [];
++          should_trace = false;
++        }
++      }
++      labels_seen.push(line.label);
++    }
++    if ("op" in line && line.op === "call") {
++      trace = [];
++      labels_seen = [];
++    }
++    if (tracing) {
++      trace.push(JSON.stringify(line));
++    }
+     if ("op" in line) {
+       // Run an instruction.
+       const action = evalInstr(line, state);
